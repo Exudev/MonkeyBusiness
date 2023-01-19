@@ -7,9 +7,11 @@ using System.Threading.Tasks;
 namespace MonkeyBusiness.Handler
 {
     public class ActionHandler
+  {
+    public void ExpenseInfoView()
     {
-
-
+        
     }
+  }
 }
 

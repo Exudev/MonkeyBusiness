@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MonkeyBusiness.Models
 {
-    public class Expense
+    public class Transaction
     {
         public int Id { get; set; }
         public int AccountId { get; set; }
@@ -15,6 +15,12 @@ namespace MonkeyBusiness.Models
         public DateTime Date { get; set; }
         public Category Category { get; set; }
         public string Description { get; set; }
+        public Types Type { get; set; }
 
+    }
+    public enum Types
+    {
+        Expense,
+        Income
     }
 }
