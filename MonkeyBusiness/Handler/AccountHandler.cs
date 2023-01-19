@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace MonkeyBusiness.Handler
 {
-    internal class AccountHandler
+    public class AccountHandler
     {
+        public string AccountPath { get; set; }
+        public string CategoriesPath { get; set; }
+        public AccountHandler(string accountPath, string categoriesPath)
+        {
+            this.AccountPath = accountPath;
+            this.CategoriesPath = categoriesPath;
+        }
     }
 }
