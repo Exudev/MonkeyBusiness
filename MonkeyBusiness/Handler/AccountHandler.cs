@@ -15,5 +15,10 @@ namespace MonkeyBusiness.Handler
             this.AccountPath = accountPath;
             this.CategoriesPath = categoriesPath;
         }
-    }
+
+       public void GetLastId()
+        {
+
+        }
+    } 
 }

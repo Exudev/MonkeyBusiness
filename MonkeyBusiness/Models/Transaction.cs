@@ -17,7 +17,10 @@ namespace MonkeyBusiness.Models
         public string Description { get; set; }
         public Types Type { get; set; }
 
+        
+
     }
+   
     public enum Types
     {
         Expense,
