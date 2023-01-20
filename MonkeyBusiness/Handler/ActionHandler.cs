@@ -10,11 +10,12 @@ namespace MonkeyBusiness.Handler
 {
     public class ActionHandler
   {
+        AccountHandler handler;
        public Transaction GerenateIncome(Account account, decimal balance)
         {
             account.Balance += balance;
             Transaction transaction = new();
-
+            
             
 
             return transaction;
