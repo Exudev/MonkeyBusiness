@@ -10,16 +10,25 @@ namespace MonkeyBusiness.Handler
 {
     public class ActionHandler
   {
-       public Transaction GerenateIncome(Account account, decimal balance)
+        AccountHandler handler;
+        /*
+       public Transaction GerenateIncome(Account account, decimal amount)
         {
-            account.Balance += balance;
-            Transaction transaction = new();
+            Console.WriteLine("Como desea nombrar el income?");
+            string nameInco = Console.ReadLine();
+            Console.WriteLine("Alguna descripcion para el income?");
+            string desInco = Console.ReadLine();
+            Console.WriteLine("Selecciona la categoria");
 
+            account.Balance += amount;
+            Transaction transaction = new(handler.GetTransactionID,account.Id,nameInco,amount,DateTime.Now,,desInco,Types.Income);
+            
             
 
             return transaction;
         }
-
+        */
+        
         
   }
 }

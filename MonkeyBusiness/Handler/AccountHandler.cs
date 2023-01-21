@@ -68,5 +68,9 @@ namespace MonkeyBusiness.Handler
         {
             Environment.Exit(0);
         }
+        public async void ShowCategories()
+        {
+
+        }
     } 
 }
