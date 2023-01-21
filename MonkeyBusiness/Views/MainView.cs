@@ -16,8 +16,8 @@ public class MainView
 				Console.WriteLine("{0}: {1} - Accounts: {2}", item.Id, item.Username, item.Account.Count);
 			}
 			Console.WriteLine("What do you want to do?");
-			int desicion = ChoiceMenu();
-			switch (desicion)
+			int decision = ChoiceMenu();
+			switch (decision)
 			{
 				case 1:
 					LogInTry(handler);
@@ -40,10 +40,10 @@ public class MainView
         Console.WriteLine("(3) Exit");
 		try
 		{
-			int desicion = int.Parse(Console.ReadLine());
-			if (desicion is > 0 and < 4)
+			int decision = int.Parse(Console.ReadLine());
+			if (decision is > 0 and < 4)
 			{
-				return desicion;
+				return decision;
 			}
 			else
 			{
@@ -63,16 +63,16 @@ public class MainView
 		try
 		{
             Console.WriteLine("Which account do you want to log into?");
-            string desicion = Console.ReadLine();
-            if (int.Parse(desicion) > handler.appUsers.Count || int.Parse(desicion) < 1)
+            string decision = Console.ReadLine();
+            if (int.Parse(decision) > handler.appUsers.Count || int.Parse(decision) < 1)
     		{
 				throw new Exception("Number is not valid, please select a valid number");
             }
 			Console.WriteLine("Password: ");
 			string pwd = Console.ReadLine();
-			if (handler.appUsers.Where(a => a.Id == int.Parse(desicion) && a.Password == pwd).ToList().Count > 0)
+			if (handler.appUsers.Where(a => a.Id == int.Parse(decision) && a.Password == pwd).ToList().Count > 0)
 			{
-				handler.GoToUser(handler.appUsers.Where(a => a.Id == int.Parse(desicion) && a.Password == pwd).First());
+				handler.GoToUser(handler.appUsers.Where(a => a.Id == int.Parse(decision) && a.Password == pwd).First());
 			}
 			else
 			{

@@ -59,7 +59,7 @@ namespace MonkeyBusiness.Handler
         }
         public void GoToUser(User user)
         {
-            userView.ShowUserView(user);
+            userView.ShowUserView(this, user);
         }
         public int GetTransactionID(Account currentAccount)
        {
