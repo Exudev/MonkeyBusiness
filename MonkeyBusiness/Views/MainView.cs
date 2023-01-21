@@ -2,9 +2,9 @@
 using MonkeyBusiness.Models;
 using System;
 
-public class UsersView
+public class MainView
 {
-	public void ShowUsersView(AccountHandler handler)
+	public void ShowMainView(AccountHandler handler)
 	{
 		while (true)
 		{
@@ -20,7 +20,7 @@ public class UsersView
 			switch (desicion)
 			{
 				case 1:
-					LogInMenu(handler);
+					LogInTry(handler);
 					break;
 				case 2:
 					UserCreationMenu(handler);
@@ -58,9 +58,32 @@ public class UsersView
 		}
 		return 0;
     }
-	public void LogInMenu(AccountHandler handler)
+	public void LogInTry(AccountHandler handler)
 	{
-
+		try
+		{
+            Console.WriteLine("Which account do you want to log into?");
+            string desicion = Console.ReadLine();
+            if (int.Parse(desicion) > handler.appUsers.Count || int.Parse(desicion) < 1)
+    		{
+				throw new Exception("Number is not valid, please select a valid number");
+            }
+			Console.WriteLine("Password: ");
+			string pwd = Console.ReadLine();
+			if (handler.appUsers.Where(a => a.Id == int.Parse(desicion) && a.Password == pwd).ToList().Count > 0)
+			{
+				handler.GoToUser(handler.appUsers.Where(a => a.Id == int.Parse(desicion) && a.Password == pwd).First());
+			}
+			else
+			{
+				throw new Exception("Password is incorrect");
+			}
+        }
+		catch (Exception ex)
+		{
+            Console.WriteLine(ex.Message);
+            Thread.Sleep(1000);
+        }
 	}
 	public void UserCreationMenu(AccountHandler handler)
 	{
@@ -86,7 +109,7 @@ public class UsersView
 				handler.SaveUsersToJson();
 				Console.WriteLine("User created!");
 				Thread.Sleep(1000);
-				ShowUsersView(handler);
+				ShowMainView(handler);
             }
 			catch (Exception ex)
 			{

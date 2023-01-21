@@ -1,4 +1,5 @@
 ﻿using MonkeyBusiness.Models;
+using MonkeyBusiness.Views;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,8 @@ namespace MonkeyBusiness.Handler
         public string AccountPath { get; set; }
         public string CategoriesPath { get; set; }
         public ActionHandler actionHandler { get; set; }
-        public UsersView userView { get; set; }
+        public MainView mainView { get; set; }
+        public UserView userView { get; set; }
         public List<User> appUsers{ get; set; }
         public List<Category> categories { get; set; }
         public AccountHandler(string accountPath, string categoriesPath)
@@ -24,7 +26,8 @@ namespace MonkeyBusiness.Handler
             appUsers = new List<User>();
             categories = new List<Category>();
             actionHandler = new ActionHandler();
-            userView = new UsersView();
+            mainView = new MainView();
+            userView = new UserView();
             Deserialize(accountPath, categoriesPath);
             Initialize();
         }
@@ -52,7 +55,11 @@ namespace MonkeyBusiness.Handler
         }
         public void Initialize()
         {
-            userView.ShowUsersView(this);
+            mainView.ShowMainView(this);
+        }
+        public void GoToUser(User user)
+        {
+            userView.ShowUserView(user);
         }
         public int GetTransactionID(Account currentAccount)
        {
