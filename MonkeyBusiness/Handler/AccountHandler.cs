@@ -1,4 +1,5 @@
 ﻿using MonkeyBusiness.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,10 +20,19 @@ namespace MonkeyBusiness.Handler
             this.CategoriesPath = categoriesPath;
         }
 
-       public int GetTransactionID(Account currentAccount)
-       {
+        public int GetTransactionID(Account currentAccount)
+        {
             int result = currentAccount.Transactions.Count;
             return result + 1;
-       }
-    } 
+        }
+
+        public async void ShowCategories()
+        {
+            
+        }
+
+        
+       
+        
+    }
 }
