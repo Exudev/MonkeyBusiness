@@ -14,7 +14,7 @@ namespace MonkeyBusiness.Views
         {
             Console.Clear();
             Console.WriteLine("Welcome back, {0}!", user.Name);
-            Console.WriteLine("Current balance: ${0}DOP (${1}USD)\n", Balance(), IntoDollars(Balance()));
+            Console.WriteLine("Current balance: ${0}DOP (${1}USD)\n", TotalBalance(user), IntoDollars(TotalBalance(user)));
             Console.WriteLine("Accounts: ");
             for (int i = 0; i < user.Account.Count; i++)
             {
@@ -63,7 +63,15 @@ namespace MonkeyBusiness.Views
             }
             return 0;
         }
-        public decimal Balance() { return 56; }
-        public decimal IntoDollars(decimal dop) { return 1; }
+        public decimal TotalBalance(User user) 
+        {
+            decimal total = 0;
+            for (int i = 0; i < user.Account.Count; i++)
+            {
+                user.Account[i].Balance += total;
+            }
+            return total; 
+        }
+        public decimal IntoDollars(decimal dop) { return (dop * 57); }
     }
 }
