@@ -14,5 +14,15 @@ namespace MonkeyBusiness.Models
         public string Lastname { get; set; }
         public string Password { get; set; }
         public List<Account> Account { get; set; }
+        public User() { }
+        public User(int id, string username, string firstName, string lastName, string password)
+        {
+            this.Id = id;
+            this.Username = username;
+            this.Name = firstName;
+            this.Lastname = lastName;
+            this.Password = password;
+            Account = new List<Account>();
+        }
     }
 }
