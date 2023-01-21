@@ -63,15 +63,17 @@ namespace MonkeyBusiness.Views
             }
             return 0;
         }
-        public decimal TotalBalance(User user) 
+        public decimal TotalBalance(User user)
         {
             decimal total = 0;
             for (int i = 0; i < user.Account.Count; i++)
             {
                 user.Account[i].Balance += total;
             }
-            return total; 
+            return total;
         }
+
+        
         public decimal IntoDollars(decimal dop) { return (dop * 57); }
     }
 }

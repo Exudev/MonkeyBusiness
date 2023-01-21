@@ -17,16 +17,16 @@ namespace MonkeyBusiness.Models
         public string Description { get; set; }
         public Types Type { get; set; }
 
-        Transaction(int id, int accId, string name,decimal amount, DateTime date, Category category, string description, Types type )
+        public Transaction(int id, int accId, string name,decimal amount, Category category, string description)
         {
            Id = id;
            AccountId = accId;
            Name = name;
            Amount = amount;
-           Date = date;    
+           Date = DateTime.Now;    
            Category = category;
            Description = description;
-           Type = type;
+           
         }
 
 
