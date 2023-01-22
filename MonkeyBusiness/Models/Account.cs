@@ -13,6 +13,14 @@ namespace MonkeyBusiness.Models
         public int UserId { get; set; }
         public decimal Balance { get; set; }
         public List<Transaction> Transactions { get; set; }
+        public Account() { }
+        public Account(int id, int userId)
+        {
+            this.Id = id;
+            this.UserId = userId;
+            this.Balance = 0;
+            this.Transactions = new List<Transaction>();
+        }
     }
 
     

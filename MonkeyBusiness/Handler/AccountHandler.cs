@@ -61,6 +61,10 @@ namespace MonkeyBusiness.Handler
         {
             userView.ShowUserView(this, user);
         }
+        public void GoToAccount(Account account)
+        {
+
+        }
         public int GetTransactionID(Account currentAccount)
        {
             int result = currentAccount.Transactions.Count;

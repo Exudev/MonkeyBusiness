@@ -62,7 +62,7 @@ public class MainView
 	{
 		try
 		{
-            Console.WriteLine("Which account do you want to log into?");
+            Console.WriteLine("Which user do you want to log into?");
             string decision = Console.ReadLine();
             if (int.Parse(decision) > handler.appUsers.Count || int.Parse(decision) < 1)
     		{
