@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AngleSharp.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,7 +16,7 @@ namespace MonkeyBusiness.Models
         public DateTime Date { get; set; }
         public Category Category { get; set; }
         public string Description { get; set; }
-        public Types Type { get; set; }
+        public TransactionType TType { get; set; }
 
         public Transaction(int id, int accId, string name,decimal amount, Category category, string description)
         {
@@ -28,11 +29,20 @@ namespace MonkeyBusiness.Models
            Description = description;
            
         }
-
-
+        public string GetEnumType(Transaction transaction)
+        {
+            if (transaction.TType == TransactionType.Income)
+            {
+                return "+";
+            }
+            else
+            {
+                return "-";
+            }
+        }
     }
    
-    public enum Types
+    public enum TransactionType
     {
         Expense,
         Income

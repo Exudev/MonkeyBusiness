@@ -18,7 +18,7 @@ namespace MonkeyBusiness.Handler
         {
             Transaction transaction = TransStart(account);
             account.Balance += amount;
-            transaction.Type = Types.Income;
+            transaction.TType = TransactionType.Income;
             return transaction;
         }
 
@@ -27,7 +27,7 @@ namespace MonkeyBusiness.Handler
 
             Transaction transaction = TransStart(account);
             account.Balance -= amount;
-            transaction.Type = Types.Expense;
+            transaction.TType = TransactionType.Expense;
             return transaction;
         }
 
