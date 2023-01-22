@@ -17,6 +17,7 @@ namespace MonkeyBusiness.Handler
         public ActionHandler actionHandler { get; set; }
         public MainView mainView { get; set; }
         public UserView userView { get; set; }
+        public AccountView accountView { get; set; }
         public List<User> appUsers{ get; set; }
         public List<Category> categories { get; set; }
         public AccountHandler(string accountPath, string categoriesPath)
@@ -28,6 +29,7 @@ namespace MonkeyBusiness.Handler
             actionHandler = new ActionHandler();
             mainView = new MainView();
             userView = new UserView();
+             accountView = new AccountView();
             Deserialize(accountPath, categoriesPath);
             Initialize();
         }
@@ -61,9 +63,9 @@ namespace MonkeyBusiness.Handler
         {
             userView.ShowUserView(this, user);
         }
-        public void GoToAccount(Account account)
+        public void GoToAccount(User user, Account account)
         {
-
+            accountView.ShowAccountView(this, user, account);
         }
         public int GetTransactionID(Account currentAccount)
        {

@@ -5,6 +5,28 @@
     "Name": "Enrei",
     "Lastname": "Kazuri",
     "Password": "prueba",
-    "Account": []
+    "Account": [
+      {
+        "Id": 2,
+        "NextId": 7,
+        "UserId": 1,
+        "Balance": 0.0,
+        "Transactions": []
+      },
+      {
+        "Id": 4,
+        "NextId": 7,
+        "UserId": 1,
+        "Balance": 0.0,
+        "Transactions": []
+      },
+      {
+        "Id": 6,
+        "NextId": 7,
+        "UserId": 1,
+        "Balance": 0.0,
+        "Transactions": []
+      }
+    ]
   }
 ]

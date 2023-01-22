@@ -20,7 +20,7 @@ namespace MonkeyBusiness.Views
                 Console.WriteLine("Accounts: ");
                 for (int i = 0; i < user.Account.Count; i++)
                 {
-                    Console.WriteLine("{0}: ${1}DOP {${2}USD}", user.Account[i].Id, user.Account[i].Balance, IntoDollars(user.Account[i].Balance));
+                    Console.WriteLine("{0}: ${1}DOP (${2}USD)", user.Account[i].Id, user.Account[i].Balance, IntoDollars(user.Account[i].Balance));
                 }
                 Console.WriteLine("\nWhat do you want to do?");
                 int decision = ChoiceMenu();
@@ -30,10 +30,10 @@ namespace MonkeyBusiness.Views
                         LogInTry(handler, user);
                         break;
                     case 2:
-                        CreateAccount(user);
+                        CreateAccount(handler, user);
                         break;
                     case 3:
-                        DeleteAccount(user);
+                        DeleteAccount(handler, user);
                         break;
                     case 4:
                         DeleteUser(handler, user);
@@ -56,7 +56,7 @@ namespace MonkeyBusiness.Views
             try
             {
                 int decision = int.Parse(Console.ReadLine());
-                if (decision is > 0 and < 5)
+                if (decision is > 0 and < 6)
                 {
                     return decision;
                 }
@@ -79,11 +79,11 @@ namespace MonkeyBusiness.Views
             {
                 Console.WriteLine("Which account do you want to check?");
                 string decision = Console.ReadLine();
-                if (int.Parse(decision) > user.Account.Count || int.Parse(decision) < 1)
+                if (int.Parse(decision) > user.Account.First().NextId - 1 || int.Parse(decision) < 1)
                 {
                     throw new Exception("Number is not valid, please select a valid number");
                 }
-                handler.GoToAccount(user.Account.Where(a => a.Id == int.Parse(decision)).First());
+                handler.GoToAccount(user, user.Account.Where(a => a.Id == int.Parse(decision)).First());
             }
             catch (Exception ex)
             {
@@ -91,7 +91,7 @@ namespace MonkeyBusiness.Views
                 Thread.Sleep(1000);
             }
         }
-        public void CreateAccount(User user)
+        public void CreateAccount(AccountHandler handler, User user)
         {
             try
             {
@@ -100,7 +100,14 @@ namespace MonkeyBusiness.Views
                 switch (decision)
                 {
                     case 'y':
-                        user.Account.Add(new Account(user.Account.Count()+1, user.Id)) ;
+                        int newid = 1;
+                        if (user.Account.Count > 0) { newid = user.Account.Last().NextId; }
+                        user.Account.Add(new Account(newid, user.Id)) ;
+                        foreach (var item in user.Account)
+                        {
+                            item.updateNextID(newid);
+                        }
+                        handler.SaveUsersToJson();
                         break;
                     case 'n':
                         throw new Exception("Operation canceled");
@@ -115,7 +122,7 @@ namespace MonkeyBusiness.Views
                 Thread.Sleep(1000);
             }
         }
-        public void DeleteAccount(User user)
+        public void DeleteAccount(AccountHandler handler, User user)
         {
             try
             {
@@ -125,11 +132,12 @@ namespace MonkeyBusiness.Views
                 {
                     throw new Exception("Operation canceled");
                 }
-                if (int.Parse(decision) > user.Account.Count || int.Parse(decision) < 1)
+                if (int.Parse(decision) > user.Account.First().NextId - 1 || int.Parse(decision) < 1)
                 {
                     throw new Exception("Number is not valid, please select a valid number");
                 }
                 user.Account.Remove(user.Account.Where(a => a.Id == int.Parse(decision)).First());
+                handler.SaveUsersToJson();
             }
             catch (Exception ex)
             {
@@ -147,6 +155,7 @@ namespace MonkeyBusiness.Views
                 {
                     case 'y':
                         handler.appUsers.Remove(user);
+                        handler.SaveUsersToJson();
                         handler.Initialize();
                         break;
                     case 'n':
