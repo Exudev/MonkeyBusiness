@@ -14,11 +14,16 @@ namespace MonkeyBusiness.Views
         {
             while (true)
             {
+                int count = 0;
                 Console.Clear();
                 Console.WriteLine("You're currenty in Account #{0}", account.Id);
                 Console.WriteLine("Current balance: ${0}DOP (${1}USD)\n", account.Balance, IntoDollars(account.Balance));
+                if (user.Account.Count > 5)
+                {
+                    count = account.Transactions.Count - 5;
+                }
                 Console.WriteLine("Last 5 Transactions: ");
-                for (int i = user.Account.Count; i > 0; i--)
+                for (int i = account.Transactions.Count; i > count; i--)
                 {
                     Console.WriteLine("{0}: {1} {2}${3}DOP (${4}USD), {5}", account.Transactions[i].Id, account.Transactions[i].Description,
                         account.Transactions[i].GetType(), account.Transactions[i].Amount, IntoDollars(account.Transactions[i].Amount), account.Transactions[i].Date);
@@ -29,6 +34,9 @@ namespace MonkeyBusiness.Views
                 {
                     case 1:
                         NewTransaction(handler, account);
+                        break;
+                    case 3:
+                        handler.GoToUser(user);
                         break;
                     default:
                         break;
