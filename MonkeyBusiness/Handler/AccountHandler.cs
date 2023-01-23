@@ -15,7 +15,7 @@ namespace MonkeyBusiness.Handler
     {
         public string AccountPath { get; set; }
         public string CategoriesPath { get; set; }
-        public ActionHandler actionHandler { get; set; }
+        
         public MoneyConverter Converter { get; set; }
         public MainView mainView { get; set; }
         public UserView userView { get; set; }
@@ -29,7 +29,6 @@ namespace MonkeyBusiness.Handler
             this.CategoriesPath = categoriesPath;
             appUsers = new List<User>();
             categories = new List<Category>();
-            actionHandler = new ActionHandler();
             mainView = new MainView();
             userView = new UserView();
              accountView = new AccountView();
