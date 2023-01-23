@@ -15,7 +15,6 @@ namespace MonkeyBusiness.Handler
     {
         public string AccountPath { get; set; }
         public string CategoriesPath { get; set; }
-        
         public MoneyConverter Converter { get; set; }
         public MainView mainView { get; set; }
         public UserView userView { get; set; }
