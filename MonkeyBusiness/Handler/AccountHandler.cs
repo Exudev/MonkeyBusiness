@@ -40,7 +40,7 @@ namespace MonkeyBusiness.Handler
         }
         public void Deserialize(string accounts, string categories)
         {
-            using (var reader = new StreamReader(accounts))// esta linea me dio error: tuve que crear en el bin la misma carpeta JsonFiles
+            using (var reader = new StreamReader(accounts))
             {
                 string readingsFromJson = reader.ReadToEnd();
                 if(readingsFromJson != string.Empty)

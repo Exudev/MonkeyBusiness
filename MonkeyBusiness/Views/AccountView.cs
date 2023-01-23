@@ -19,15 +19,15 @@ namespace MonkeyBusiness.Views
                 Console.Clear();
                 Console.WriteLine("You're currenty in Account #{0}", account.Id);
                 Console.WriteLine("Current balance: ${0}DOP (${1}USD)\n", account.Balance, handler.Converter.ConvertCurrency(account.Balance, true));
-                if (user.Account.Count > 5)
+                if (account.Transactions.Count > 5)
                 {
                     count = account.Transactions.Count - 5;
                 }
                 Console.WriteLine("Last 5 Transactions: ");
-                for (int i = account.Transactions.Count; i > count; i--)
+                for (int i = account.Transactions.Count - 1; i > count - 1; i--)
                 {
                     Console.WriteLine("{0}: {1} {2}${3}DOP (${4}USD), {5}", account.Transactions[i].Id, account.Transactions[i].Description,
-                        account.Transactions[i].GetType(), account.Transactions[i].Amount,
+                        account.Transactions[i].GetEnumType(), account.Transactions[i].Amount,
                         handler.Converter.ConvertCurrency(account.Transactions[i].Amount, true), account.Transactions[i].Date);
                 }
                 Console.WriteLine("\nWhat do you want to do?");
@@ -60,7 +60,7 @@ namespace MonkeyBusiness.Views
             try
             {
                 int decision = int.Parse(Console.ReadLine());
-                if (decision is > 0 and < 4)
+                if (decision is > 0 and < 5)
                 {
                     return decision;
                 }
@@ -94,7 +94,7 @@ namespace MonkeyBusiness.Views
             return transaction;
         }
         
-        public Transaction GerenateExpense(Account account, AccountHandler handler)
+        public void GerenateExpense(Account account, AccountHandler handler)
         {
 
             Transaction transaction = NewTransaction(handler,account);
@@ -102,17 +102,17 @@ namespace MonkeyBusiness.Views
             transaction.TType = TransactionType.Expense;
             account.Transactions.Add(transaction);
             handler.SaveUsersToJson();
-            return transaction;
+            
         }
 
-        public Transaction GerenateIncome(Account account, AccountHandler handler)
+        public void GerenateIncome(Account account, AccountHandler handler)
         {
             Transaction transaction = NewTransaction(handler, account);
             account.Balance += transaction.Amount;
             transaction.TType = TransactionType.Income;
             account.Transactions.Add(transaction);
             handler.SaveUsersToJson();
-            return transaction;
+            
         }
         public Category GetCategory(int choice, AccountHandler handler)
         {
