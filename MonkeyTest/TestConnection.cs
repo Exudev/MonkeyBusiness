@@ -5,16 +5,16 @@ namespace MonkeyTest
     [TestClass]
     public class StubRateSearcher : IRateSearcher
     {
-        public const float RATE_USD_DOP_POPULAR = 55.5f;
-        public const float RATE_DOP_USD_POPULAR = 45.6f;
+        public const decimal RATE_USD_DOP_POPULAR = 55.5m;
+        public const decimal RATE_DOP_USD_POPULAR = 45.6m;
 
         public int MaximumNumberOfCalls = 0;
         public async Task<List<Rate>> GetCurrencyRates()
         {
             MaximumNumberOfCalls++;
             List<Rate> rates = new List<Rate>();
-            rates.Add(new Rate(RATE_USD_DOP_POPULAR, "USD", "DOP", "Banco Popular"));
-            rates.Add(new Rate(RATE_DOP_USD_POPULAR, "DOP", "USD", "Banco Popular"));
+            rates.Add(new Rate((float)RATE_USD_DOP_POPULAR, "USD", "DOP", "Banco Popular"));
+            rates.Add(new Rate((float)RATE_DOP_USD_POPULAR, "DOP", "USD", "Banco Popular"));
             return rates;
         }
     }
@@ -26,7 +26,7 @@ namespace MonkeyTest
         public void Testing_buying_pesos() //el resultado matematico da correcto pero da un error con system.single expected, actual system.decimal
         {
             // ARRANGE
-            float correctRate = StubRateSearcher.RATE_DOP_USD_POPULAR;
+            decimal correctRate = StubRateSearcher.RATE_DOP_USD_POPULAR;
             IRateSearcher RateSearcher = new StubRateSearcher();
             MoneyConverter sut = new MoneyConverter(RateSearcher);
 
