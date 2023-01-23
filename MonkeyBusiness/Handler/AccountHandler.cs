@@ -30,7 +30,7 @@ namespace MonkeyBusiness.Handler
             categories = new List<Category>();
             mainView = new MainView();
             userView = new UserView();
-             accountView = new AccountView();
+            accountView = new AccountView();
             categoriesView = new CategoriesView();
             Converter = new MoneyConverter();
             Deserialize(accountPath, categoriesPath);

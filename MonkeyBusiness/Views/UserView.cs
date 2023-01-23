@@ -182,6 +182,5 @@ namespace MonkeyBusiness.Views
             }
             return total;
         }
-        public decimal IntoDollars(decimal dop) { return (dop * 57); }
     }
 }
