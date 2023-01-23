@@ -16,8 +16,27 @@ namespace MonkeyBusiness.Resources
         public MoneyConverter() { RateSearcher = new RateSearcher();}
         public decimal ConvertCurrency(decimal value, bool isDOP)
         {
-            var rates = RateSearcher.GetCurrencyRates().Result;
-            var dollarRate = rates.Where(r => r.Entity == "Banco Popular" && r.OGCurrency == "DOP" && r.NewCurrency == "USD").First();
+            int nom = 0;
+            var rates = RateSearcher.GetCurrencyRates();
+            while (!rates.IsCompleted)
+            {
+                nom++;
+                if (nom % 3 == 0)
+                {
+                    Console.Write(@"\");
+                }
+                else if (nom % 3 == 1)
+                {
+                    Console.Write("-");
+                }
+                else
+                {
+                    Console.Write("/");
+                }
+                Thread.Sleep(85);
+                Console.Write("\b");
+            }
+            var dollarRate = rates.Result.Where(r => r.Entity == "Banco Popular" && r.OGCurrency == "DOP" && r.NewCurrency == "USD").First();
             decimal exchangeRate = 0;
             if (isDOP)
             {
