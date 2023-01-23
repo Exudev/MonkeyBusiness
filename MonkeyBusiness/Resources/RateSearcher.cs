@@ -14,58 +14,58 @@ using AngleSharp;
 namespace MonkeyBusiness.Resources
 {
     // esto es símplemente para agrupar los valores de cada tasa
-    public struct Tasa
+    public struct Rate
     {
-        public string Entidad;
-        public float Valor;
-        public string MonedaOrigen;
-        public string MonedaDestino;
+        public string Entity;
+        public float Value;
+        public string OGCurrency;
+        public string NewCurrency;
 
-        public Tasa(float valor, string monedaOrigen, string monedaDestino, string entidad = "")
+        public Rate(float value, string ogCurrency, string newCurrency, string entity = "")
         {
-            Entidad = entidad;
-            Valor = valor;
-            MonedaOrigen = monedaOrigen;
-            MonedaDestino = monedaDestino;
+            Entity = entity;
+            Value = value;
+            OGCurrency = ogCurrency;
+            NewCurrency = newCurrency;
         }
 
     }
 
     // Esta interfaz es para poder hacer un stub de BuscadorTasas para las Pruebas Unitarias
-    public interface IBuscadorTasas
+    public interface IRateSearcher
     {
-        public List<Tasa> ObtenerTasas();
+        public Task<List<Rate>> GetCurrencyRates();
     }
 
     /* Esta es la clase que hace un request a infodolar.com.do y hace un scrapping de las tasas.
     Tendrán que hacer un stub de esta clase en el proyecto de Pruebas Unitarias, para sustituirla
     por una versión que no haga el request realmente (al final, descarté lo que les había comentado
     de hacer un stub del HttpClient o del BrowsingContext porque se complicaría demasiado).*/
-    public class BuscadorTasas : IBuscadorTasas
+    public class RateSearcher : IRateSearcher
     {
         /* Este método debería ser async para poder hacerle un await al método "OpenAsync". 
          La razón por la que no lo puse async, es para que lo hagan ustedes mismos cuando lo integren
         a su proyecto. */
-        public List<Tasa> ObtenerTasas()
+        public async Task<List<Rate>> GetCurrencyRates()
         {
-            List<Tasa> tasas = new List<Tasa>();
+            List<Rate> rates = new List<Rate>();
             var config = Configuration.Default.WithDefaultLoader();
             var address = "https://www.infodolar.com.do/";
             var context = BrowsingContext.New(config);
-            var document = context.OpenAsync(address).GetAwaiter().GetResult(); //deben de sustituirlo por un await
+            var document = await context.OpenAsync(address); //deben de sustituirlo por un await
             var cells = document.QuerySelectorAll("table#Dolar tbody tr");
 
             foreach (var i in cells)
             {
                 var bankName = i.Children[0].QuerySelector("span.nombre")?.TextContent.Trim() ?? "";
-                var buyPriceConSimbolo = i.Children[1].TextContent.Split('\n')[1].Trim();
-                var sellPriceConSimbolo = i.Children[2].TextContent.Split('\n')[1].Trim();
-                float buyPrice = buyPriceConSimbolo != "" ? Convert.ToSingle(buyPriceConSimbolo.Replace("$", "")) : 0.0f;
-                float sellPrice = sellPriceConSimbolo != "" ? Convert.ToSingle(sellPriceConSimbolo.Replace("$", "")) : 0.0f;
-                tasas.Add(new Tasa(buyPrice, "USD", "DOP", bankName));
-                tasas.Add(new Tasa(sellPrice, "DOP", "USD", bankName));
+                var signedBuyPrice = i.Children[1].TextContent.Split('\n')[1].Trim();
+                var signedSellPrice = i.Children[2].TextContent.Split('\n')[1].Trim();
+                float buyPrice = signedBuyPrice != "" ? Convert.ToSingle(signedBuyPrice.Replace("$", "")) : 0.0f;
+                float sellPrice = signedSellPrice != "" ? Convert.ToSingle(signedSellPrice.Replace("$", "")) : 0.0f;
+                rates.Add(new Rate(buyPrice, "USD", "DOP", bankName));
+                rates.Add(new Rate(sellPrice, "DOP", "USD", bankName));
             }
-            return tasas;
+            return rates;
 
         }
     }
