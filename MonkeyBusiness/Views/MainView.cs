@@ -26,6 +26,9 @@ public class MainView
 					UserCreationMenu(handler);
 					break;
 				case 3:
+					CategoriesMenu(handler);
+					break;
+				case 4:
 					handler.Exit();
 					break;
 				default:
@@ -37,11 +40,12 @@ public class MainView
 	{
 		Console.WriteLine("(1) Log in");
         Console.WriteLine("(2) Create new account");
-        Console.WriteLine("(3) Exit");
+		Console.WriteLine("(3) Manage Categories");
+        Console.WriteLine("(4) Exit");
 		try
 		{
 			int decision = int.Parse(Console.ReadLine());
-			if (decision is > 0 and < 4)
+			if (decision is > 0 and < 5)
 			{
 				return decision;
 			}
@@ -117,5 +121,9 @@ public class MainView
 				Thread.Sleep(1000);
 			}
         }
+	}
+	public void CategoriesMenu(AccountHandler handler)
+	{
+		handler.GoToCategories();
 	}
 }

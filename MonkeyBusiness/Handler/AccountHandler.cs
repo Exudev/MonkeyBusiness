@@ -19,6 +19,7 @@ namespace MonkeyBusiness.Handler
         public MoneyConverter Converter { get; set; }
         public MainView mainView { get; set; }
         public UserView userView { get; set; }
+        public CategoriesView categoriesView { get; set; }
         public AccountView accountView { get; set; }
         public List<User> appUsers{ get; set; }
         public List<Category> categories { get; set; }
@@ -32,6 +33,7 @@ namespace MonkeyBusiness.Handler
             mainView = new MainView();
             userView = new UserView();
              accountView = new AccountView();
+            categoriesView = new CategoriesView();
             Converter = new MoneyConverter();
             Deserialize(accountPath, categoriesPath);
             Initialize();
@@ -70,6 +72,10 @@ namespace MonkeyBusiness.Handler
         {
             accountView.ShowAccountView(this, user, account);
         }
+        public void GoToCategories()
+        {
+            categoriesView.ShowCategoriesView(this);
+        }
         public int GetTransactionID(Account currentAccount)
        {
             int result = currentAccount.Transactions.Count;
@@ -80,6 +86,11 @@ namespace MonkeyBusiness.Handler
             var json = JsonConvert.SerializeObject(this.appUsers.ToArray(), Formatting.Indented);
             File.WriteAllText(AccountPath, json);
        }
+        public void SaveCategoriesToJson()
+        {
+            var json = JsonConvert.SerializeObject(this.categories.ToArray(), Formatting.Indented);
+            File.WriteAllText(CategoriesPath, json);
+        }
         public void Exit()
         {
             Environment.Exit(0);
@@ -89,6 +100,13 @@ namespace MonkeyBusiness.Handler
             foreach (var item in this.categories)
             {
                 Console.WriteLine(item);
+            }
+        }
+        public void UpdateCategoriesID()
+        {
+            for (int i = 1; i == categories.Count(); i++)
+            {
+                categories[i].Id = i;
             }
         }
     } 
