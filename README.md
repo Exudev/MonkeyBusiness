@@ -4,7 +4,7 @@ Is an application designed to help you keep track of your expenses. This reposit
 ## IDS326 2022-04 [Grupo 4]
 **EnreiKazuri** (Mariano Vásquez, 1087284)
 
-**Pabluedud** (Pablo Edu Diaz, 1096394)
+**Pabloedud** (Pablo Edu Diaz, 1096394)
 
 **Manuelusion** (Manuel Mañon, 1095179)
 
