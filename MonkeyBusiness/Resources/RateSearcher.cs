@@ -52,7 +52,7 @@ namespace MonkeyBusiness.Resources
             var config = Configuration.Default.WithDefaultLoader();
             var address = "https://www.infodolar.com.do/";
             var context = BrowsingContext.New(config);
-            var document = await context.OpenAsync(address); //deben de sustituirlo por un await
+            var document = await context.OpenAsync(address);
             var cells = document.QuerySelectorAll("table#Dolar tbody tr");
 
             foreach (var i in cells)

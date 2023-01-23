@@ -98,7 +98,6 @@ namespace MonkeyBusiness.Views
             Transaction transaction = new (id, account.Id, nameInco, monto, GetCategory(select, handler), desInco);
             return transaction;
         }
-        
         public void GerenateExpense(Account account, AccountHandler handler)
         {
             try
@@ -117,7 +116,6 @@ namespace MonkeyBusiness.Views
                 Thread.Sleep(1000);
             }
         }
-
         public void GerenateIncome(Account account, AccountHandler handler)
         {
             try

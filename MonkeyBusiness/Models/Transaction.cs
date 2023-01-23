@@ -41,7 +41,6 @@ namespace MonkeyBusiness.Models
             }
         }
     }
-   
     public enum TransactionType
     {
         Expense,
