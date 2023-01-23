@@ -36,6 +36,9 @@ namespace MonkeyBusiness.Views
                     case 1:
                         NewTransaction(handler, account);
                         break;
+                    case 2:
+                        //ShowTransaction(handler, account);
+                        break;
                     case 3:
                         handler.GoToUser(user);
                         break;
@@ -69,6 +72,9 @@ namespace MonkeyBusiness.Views
             }
             return 0;
         }
+      /*  public void ShowTransaction(AccountHandler handler, Account account) 
+        { 
+        } */
         public void NewTransaction(AccountHandler handler, Account account)
         {
         }
