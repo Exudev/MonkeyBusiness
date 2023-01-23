@@ -99,14 +99,14 @@ namespace MonkeyBusiness.Handler
         {
             foreach (var item in this.categories)
             {
-                Console.WriteLine("{0}:{1}",item.Id, item.Name);
+                Console.WriteLine("{0}: {1}",item.Id, item.Name);
             }
         }
         public void UpdateCategoriesID()
         {
-            for (int i = 1; i == categories.Count(); i++)
+            for (int i = 0; i < categories.Count(); i++)
             {
-                categories[i].Id = i;
+                categories[i].Id = i + 1;
             }
         }
     } 

@@ -69,13 +69,17 @@ namespace MonkeyBusiness.Views
             try
             {
 
-                Console.WriteLine("Category name?");
+                Console.WriteLine("Category name? (C) to cancel");
                 string newCat = Console.ReadLine();
+                if (newCat.ToLower() == "c")
+                {
+                    throw new Exception("Operation canceled");
+                }
                 if (handler.categories.Count != 0)
                 {
-                    if (handler.categories.Where(c => c.Name == newCat).ToList().Count() != 0)
+                    if (handler.categories.Where(c => c.Name == newCat).ToList().Count() == 0)
                     {
-                        handler.categories.Add(new Models.Category(handler.categories.Last().Id, newCat));
+                        handler.categories.Add(new Models.Category(handler.categories.Last().Id + 1, newCat));
                         handler.SaveCategoriesToJson();
                         Console.WriteLine("Category created!");
                         Thread.Sleep(1000);
@@ -114,10 +118,13 @@ namespace MonkeyBusiness.Views
                 {
                     throw new Exception("Number is not valid, please select a valid number");
                 }
-                handler.categories.Remove(handler.categories.Where(c => c.Id == int.Parse(decision)).First());
-                handler.UpdateCategoriesID();
-                handler.SaveCategoriesToJson();
-                Console.WriteLine("Category deleted");
+                else
+                {
+                    handler.categories.Remove(handler.categories.Where(c => c.Id == int.Parse(decision)).First());
+                    handler.UpdateCategoriesID();
+                    handler.SaveCategoriesToJson();
+                    Console.WriteLine("Category deleted");
+                }
             }
             catch (Exception ex)
             {
@@ -127,7 +134,33 @@ namespace MonkeyBusiness.Views
         }
         public void EditCategory(AccountHandler handler)
         {
-
+            try
+            {
+                Console.WriteLine("Which category do you want to delete? (C) to cancel");
+                string decision = Console.ReadLine();
+                if (decision.ToLower() == "c")
+                {
+                    throw new Exception("Operation canceled");
+                }
+                if (int.Parse(decision) > handler.categories.Last().Id || int.Parse(decision) < 1)
+                {
+                    throw new Exception("Number is not valid, please select a valid number");
+                }
+                else
+                {
+                    Console.WriteLine("New name?");
+                    string newName = Console.ReadLine();
+                    handler.categories.Where(c => c.Id == int.Parse(decision)).First().Name = newName;
+                    handler.SaveCategoriesToJson();
+                    Console.WriteLine("Category modified!");
+                    Thread.Sleep(1000);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Thread.Sleep(1000);
+            }
         }
     }
 }
