@@ -1,15 +1,22 @@
 [
   {
-    "Id": "1",
-    "Name": "Videogames"
+    "Id": 1,
+    "Name": "Milk"
   },
   {
-    "Id": "2",
-    "Name": "Clothing"
+    "Id": 2,
+    "Name": "Gorritos"
   },
   {
     "Id": 3,
-    "Name": "Food"
+    "Name": "Choco"
+  },
+  {
+    "Id": 4,
+    "Name": "Crisps"
+  },
+  {
+    "Id": 5,
+    "Name": "hello"
   }
-
 ]
