@@ -10,8 +10,87 @@
         "Id": 2,
         "NextId": 7,
         "UserId": 1,
-        "Balance": 2850.50,
-        "Transactions": []
+        "Balance": 2312.50,
+        "Transactions": [
+          {
+            "Id": 1,
+            "AccountId": 2,
+            "Name": "Nueva transaccion",
+            "Amount": 560.0,
+            "Date": "2023-01-22T21:28:03.4525845-04:00",
+            "Category": {
+              "Id": 2,
+              "Name": "Gorritos"
+            },
+            "Description": "Es nueva",
+            "TType": 1
+          },
+          {
+            "Id": 2,
+            "AccountId": 2,
+            "Name": "transaccion",
+            "Amount": 600.0,
+            "Date": "2023-01-22T21:35:43.7878456-04:00",
+            "Category": {
+              "Id": 1,
+              "Name": "Milk"
+            },
+            "Description": "Descripcion de la transaccion",
+            "TType": 0
+          },
+          {
+            "Id": 3,
+            "AccountId": 2,
+            "Name": "qw",
+            "Amount": 50.0,
+            "Date": "2023-01-22T21:41:26.7448726-04:00",
+            "Category": {
+              "Id": 1,
+              "Name": "Milk"
+            },
+            "Description": "ddwq",
+            "TType": 1
+          },
+          {
+            "Id": 4,
+            "AccountId": 2,
+            "Name": "rgwwg",
+            "Amount": 50.0,
+            "Date": "2023-01-22T21:41:35.7338386-04:00",
+            "Category": {
+              "Id": 2,
+              "Name": "Gorritos"
+            },
+            "Description": "gweeg",
+            "TType": 1
+          },
+          {
+            "Id": 5,
+            "AccountId": 2,
+            "Name": "wfefqf",
+            "Amount": 2.0,
+            "Date": "2023-01-22T21:41:45.0061341-04:00",
+            "Category": {
+              "Id": 5,
+              "Name": "hello"
+            },
+            "Description": "qfdqq",
+            "TType": 1
+          },
+          {
+            "Id": 6,
+            "AccountId": 2,
+            "Name": "qwfqwgh",
+            "Amount": 600.0,
+            "Date": "2023-01-22T21:42:04.324339-04:00",
+            "Category": {
+              "Id": 2,
+              "Name": "Gorritos"
+            },
+            "Description": "qgqagew",
+            "TType": 0
+          }
+        ]
       },
       {
         "Id": 4,

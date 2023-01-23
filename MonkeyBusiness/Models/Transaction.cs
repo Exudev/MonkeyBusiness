@@ -29,9 +29,9 @@ namespace MonkeyBusiness.Models
            Description = description;
            
         }
-        public string GetEnumType(Transaction transaction)
+        public string GetEnumType()
         {
-            if (transaction.TType == TransactionType.Income)
+            if (this.TType == TransactionType.Income)
             {
                 return "+";
             }
