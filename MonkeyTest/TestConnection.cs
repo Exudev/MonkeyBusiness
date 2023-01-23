@@ -20,10 +20,10 @@ namespace MonkeyTest
     }
 
     [TestClass]
-    public class TestingConvertidorDeMoneda
+    public class TestingMoneyConverter
     {
         [TestMethod]
-        public void Probando_una_compra_de_dolares_en_el_popular()
+        public void Testing_buying_pesos() //el resultado matematico da correcto pero da un error con system.single expected, actual system.decimal
         {
             // ARRANGE
             float correctRate = StubRateSearcher.RATE_DOP_USD_POPULAR;
@@ -35,7 +35,7 @@ namespace MonkeyTest
             decimal Pesos = sut.ConvertCurrency(20, false);
 
             // ASSERT
-            Assert.AreEqual(20 / correctRate, Pesos);
+            Assert.AreEqual(20 * correctRate, Pesos);
             Assert.AreEqual(1, ((StubRateSearcher)RateSearcher).MaximumNumberOfCalls);
         }
 
