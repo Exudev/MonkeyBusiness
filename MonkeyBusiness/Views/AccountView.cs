@@ -88,6 +88,10 @@ namespace MonkeyBusiness.Views
             string desInco = Console.ReadLine();
             Console.WriteLine("Selecciona la categoria");
             handler.ShowCategories();
+            if (handler.categories.Count == 0)
+            {
+                throw new Exception("There are currently no categories on the system");
+            }
             int select = int.Parse(Console.ReadLine());
             Console.WriteLine("Monto de la transaccion?");
             decimal monto = decimal.Parse(Console.ReadLine());
@@ -97,23 +101,39 @@ namespace MonkeyBusiness.Views
         
         public void GerenateExpense(Account account, AccountHandler handler)
         {
+            try
+            {
 
-            Transaction transaction = NewTransaction(handler,account);
-            account.Balance -= transaction.Amount;
-            transaction.TType = TransactionType.Expense;
-            account.Transactions.Add(transaction);
-            handler.SaveUsersToJson();
-            
+                Transaction transaction = NewTransaction(handler, account);
+                account.Balance -= transaction.Amount;
+                transaction.TType = TransactionType.Expense;
+                account.Transactions.Add(transaction);
+                handler.SaveUsersToJson();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine("Transaction could not be completed");
+                Thread.Sleep(1000);
+            }
         }
 
         public void GerenateIncome(Account account, AccountHandler handler)
         {
-            Transaction transaction = NewTransaction(handler, account);
-            account.Balance += transaction.Amount;
-            transaction.TType = TransactionType.Income;
-            account.Transactions.Add(transaction);
-            handler.SaveUsersToJson();
-            
+            try
+            {
+                Transaction transaction = NewTransaction(handler, account);
+                account.Balance += transaction.Amount;
+                transaction.TType = TransactionType.Income;
+                account.Transactions.Add(transaction);
+                handler.SaveUsersToJson();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine("Transaction could not be completed");
+                Thread.Sleep(1000);
+            }        
         }
         public Category GetCategory(int choice, AccountHandler handler)
         {
