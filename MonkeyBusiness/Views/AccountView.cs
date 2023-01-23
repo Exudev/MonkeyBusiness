@@ -95,7 +95,7 @@ namespace MonkeyBusiness.Views
             int select = int.Parse(Console.ReadLine());
             Console.WriteLine("Monto de la transaccion?");
             decimal monto = decimal.Parse(Console.ReadLine());
-            Transaction transaction = new (id, account.Id, nameInco, monto, GetCategory(select, handler), desInco);
+            Transaction transaction = new (id, account.Id, nameInco, monto, GetCategory(select, handler.categories), desInco);
             return transaction;
         }
         
@@ -135,10 +135,10 @@ namespace MonkeyBusiness.Views
                 Thread.Sleep(1000);
             }        
         }
-        public Category GetCategory(int choice, AccountHandler handler)
+        public Category GetCategory(int choice, List<Category> categories)
         {
             Category tempCategory = new Category(0,"");
-            foreach (var category in handler.categories)
+            foreach (var category in categories)
             {
                 if (choice == category.Id)
                 {

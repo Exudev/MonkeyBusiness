@@ -130,7 +130,7 @@
     "Account": [
       {
         "Id": 1,
-        "NextId": 2,
+        "NextId": 3,
         "UserId": 2,
         "Balance": 15000.00,
         "Transactions": [
@@ -145,6 +145,27 @@
               "Name": "Videogames"
             },
             "Description": "Para el alquiler",
+            "TType": 1
+          }
+        ]
+      },
+      {
+        "Id": 2,
+        "NextId": 3,
+        "UserId": 2,
+        "Balance": 5639.49,
+        "Transactions": [
+          {
+            "Id": 1,
+            "AccountId": 2,
+            "Name": "Charge",
+            "Amount": 5639.49,
+            "Date": "2023-01-23T01:17:37.9461166-04:00",
+            "Category": {
+              "Id": 5,
+              "Name": "hello"
+            },
+            "Description": "Charge from big sis",
             "TType": 1
           }
         ]
