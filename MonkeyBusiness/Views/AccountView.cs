@@ -95,7 +95,7 @@ namespace MonkeyBusiness.Views
             return transaction;
         }
         
-        public Transaction GerenateExpense(Account account, AccountHandler handler)
+        public void GerenateExpense(Account account, AccountHandler handler)
         {
 
             Transaction transaction = NewTransaction(handler,account);
@@ -103,17 +103,17 @@ namespace MonkeyBusiness.Views
             transaction.TType = TransactionType.Expense;
             account.Transactions.Add(transaction);
             handler.SaveUsersToJson();
-            return transaction;
+            
         }
 
-        public Transaction GerenateIncome(Account account, AccountHandler handler)
+        public void GerenateIncome(Account account, AccountHandler handler)
         {
             Transaction transaction = NewTransaction(handler, account);
             account.Balance += transaction.Amount;
             transaction.TType = TransactionType.Income;
             account.Transactions.Add(transaction);
             handler.SaveUsersToJson();
-            return transaction;
+            
         }
         public Category GetCategory(int choice, AccountHandler handler)
         {

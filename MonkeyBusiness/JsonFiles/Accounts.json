@@ -150,5 +150,35 @@
         ]
       }
     ]
+  },
+  {
+    "Id": 3,
+    "Username": "manu",
+    "Name": "Manuel",
+    "Lastname": "Mañón",
+    "Password": "manu12",
+    "Account": [
+      {
+        "Id": 1,
+        "NextId": 2,
+        "UserId": 3,
+        "Balance": 1000.0,
+        "Transactions": [
+          {
+            "Id": 1,
+            "AccountId": 1,
+            "Name": "pago",
+            "Amount": 1000.0,
+            "Date": "2023-01-22T21:42:56.5309529-04:00",
+            "Category": {
+              "Id": 5,
+              "Name": "hello"
+            },
+            "Description": "",
+            "TType": 1
+          }
+        ]
+      }
+    ]
   }
 ]

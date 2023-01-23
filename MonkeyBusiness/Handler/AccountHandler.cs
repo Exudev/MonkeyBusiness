@@ -15,7 +15,6 @@ namespace MonkeyBusiness.Handler
     {
         public string AccountPath { get; set; }
         public string CategoriesPath { get; set; }
-        public ActionHandler actionHandler { get; set; }
         public MoneyConverter Converter { get; set; }
         public MainView mainView { get; set; }
         public UserView userView { get; set; }
@@ -29,7 +28,6 @@ namespace MonkeyBusiness.Handler
             this.CategoriesPath = categoriesPath;
             appUsers = new List<User>();
             categories = new List<Category>();
-            actionHandler = new ActionHandler();
             mainView = new MainView();
             userView = new UserView();
              accountView = new AccountView();
@@ -40,7 +38,7 @@ namespace MonkeyBusiness.Handler
         }
         public void Deserialize(string accounts, string categories)
         {
-            using (var reader = new StreamReader(accounts))// esta linea me dio error: tuve que crear en el bin la misma carpeta JsonFiles
+            using (var reader = new StreamReader(accounts))
             {
                 string readingsFromJson = reader.ReadToEnd();
                 if(readingsFromJson != string.Empty)
