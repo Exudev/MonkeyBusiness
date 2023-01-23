@@ -12,13 +12,15 @@ namespace MonkeyTest
         public void TestingupdateNextID()
         {
             //Arrange
-            Account account = new Account();
-            account.Id = 1;
-            //Act
-            account.updateNextID(account.Id);
+            Account SUT = new Account();
+            SUT.Id = 1;
             int expected = 2;
+            //Act
+           SUT.updateNextID(SUT.Id);
+           int actual = SUT.NextId;
+            
             //Assert
-            Assert.AreEqual(expected, account.NextId);
+            Assert.AreEqual(expected, actual);
         }
         
     }

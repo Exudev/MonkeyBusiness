@@ -1,18 +1,19 @@
-﻿using MonkeyBusiness.Handler;
+﻿using MonkeyBusiness.Models;
+using MonkeyBusiness.Views;
+using MonkeyBusiness.Handler;
 using MonkeyBusiness.Models;
 using MonkeyBusiness.Views;
 
 namespace MonkeyTest
 {
     [TestClass]
-    public class TestCategory
+    public class TestAccountView
     {
         [TestMethod]
-        public void TestGetCategory() 
+        public void TestGetCategory()
         {
-            
             //Arrange 
-            AccountView aw = new AccountView();
+            AccountView SUT = new AccountView();
             List<Category> categories = new List<Category>();
             Category category = new Category(0, "Toys");
             Category category2 = new Category(1, "Food");
@@ -22,9 +23,13 @@ namespace MonkeyTest
             categories.Add(category3);
             int choice = 2;
             //Act 
-            Category Actual = aw.GetCategory(choice,categories);
+            Category Actual = SUT.GetCategory(choice, categories);
             //Assert
             Assert.AreSame(category3, Actual);
         }
+
+       
     }
+
 }
+

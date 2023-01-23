@@ -50,13 +50,13 @@ namespace MonkeyTest
         public void TestConvertCurrencyDOPtoUSD()
         {
             //Arrange
-            MoneyConverter mc = new MoneyConverter();
+            MoneyConverter SUT = new MoneyConverter();
             decimal value = 15000.00m;
             bool isDop = true;
             decimal expected = 263.62m;
 
             //Act
-            decimal actual = (mc.ConvertCurrency(value, isDop));
+            decimal actual = (SUT.ConvertCurrency(value, isDop));
             //Assert
             Assert.AreEqual(expected,actual);
         }
@@ -65,12 +65,12 @@ namespace MonkeyTest
         { 
         
             //Arrange
-            MoneyConverter mc = new MoneyConverter();
+            MoneyConverter SUT = new MoneyConverter();
             decimal value = 99.11m;
             bool isDop = false;
             decimal expected = 5639.36m;
             //Act
-            decimal actual = (mc.ConvertCurrency(value, isDop));
+            decimal actual = (SUT.ConvertCurrency(value, isDop));
             //Assert
             Assert.AreEqual(expected, actual);
         }
