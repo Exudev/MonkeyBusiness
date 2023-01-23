@@ -81,11 +81,11 @@ namespace MonkeyBusiness.Handler
         {
             Environment.Exit(0);
         }
-        public async void ShowCategories()
+        public void ShowCategories()
         {
             foreach (var item in this.categories)
             {
-                Console.WriteLine(item);
+                Console.WriteLine("{0}:{1}",item.Id, item.Name);
             }
         }
     } 

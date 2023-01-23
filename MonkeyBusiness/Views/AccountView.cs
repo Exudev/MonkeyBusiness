@@ -68,8 +68,52 @@ namespace MonkeyBusiness.Views
             }
             return 0;
         }
-        public void NewTransaction(AccountHandler handler, Account account)
+        public Transaction NewTransaction(AccountHandler handler, Account account)
         {
+
+            int id = handler.GetTransactionID(account);
+            Console.WriteLine("Como desea nombrar el income?");
+            string nameInco = Console.ReadLine();
+            Console.WriteLine("Alguna descripcion para el income?");
+            string desInco = Console.ReadLine();
+            Console.WriteLine("Selecciona la categoria");
+            handler.ShowCategories();
+            int select = int.Parse(Console.ReadLine());
+            Console.WriteLine("Monto de la transaccion?");
+            decimal monto = decimal.Parse(Console.ReadLine());
+            Transaction transaction = new (id, account.Id, nameInco, monto, GetCategory(select,handler), desInco);
+            return transaction;
+        }
+        
+         
+         
+        public Transaction GerenateExpense(Account account, decimal amount, AccountHandler handler)
+        {
+
+            Transaction transaction = NewTransaction(handler,account);
+            account.Balance -= amount;
+            transaction.TType = TransactionType.Expense;
+            return transaction;
+        }
+
+        public Transaction GerenateIncome(Account account, decimal amount, AccountHandler handler)
+        {
+            Transaction transaction = NewTransaction(handler, account);
+            account.Balance += amount;
+            transaction.TType = TransactionType.Income;
+            return transaction;
+        }
+        public Category GetCategory(int choice, AccountHandler handler)
+        {
+            Category tempCategory = new Category(0,"");
+            foreach (var category in handler.categories)
+            {
+                if (choice == category.Id)
+                {
+                    tempCategory = category;
+                }
+            }
+            return tempCategory;
         }
         public decimal IntoDollars(decimal dop) { return (dop * 57); }
     }

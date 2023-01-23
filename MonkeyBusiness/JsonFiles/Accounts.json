@@ -28,5 +28,21 @@
         "Transactions": []
       }
     ]
+  },
+  {
+    "Id": 2,
+    "Username": "Pabloedud",
+    "Name": "Pablo",
+    "Lastname": "Diaz",
+    "Password": "beastmaster64",
+    "Account": [
+      {
+        "Id": 1,
+        "NextId": 2,
+        "UserId": 2,
+        "Balance": 1000.0,
+        "Transactions": []
+      }
+    ]
   }
 ]
