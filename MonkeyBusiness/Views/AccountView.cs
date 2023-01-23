@@ -10,6 +10,7 @@ namespace MonkeyBusiness.Views
 {
     public class AccountView
     {
+       
         public void ShowAccountView(AccountHandler handler, User user, Account account)
         {
             while (true)
@@ -34,10 +35,16 @@ namespace MonkeyBusiness.Views
                 switch (decision)
                 {
                     case 1:
-                        NewTransaction(handler, account);
+                               GerenateIncome(account,handler);
+                        break;
+                    case 2:
+
                         break;
                     case 3:
                         handler.GoToUser(user);
+                        break;
+                    case 4:
+
                         break;
                     default:
                         break;
@@ -46,9 +53,10 @@ namespace MonkeyBusiness.Views
         }
         public int ChoiceMenu()
         {
-            Console.WriteLine("(1) Register a new transaction");
-            Console.WriteLine("(2) Examine all transactions");
-            Console.WriteLine("(3) Exit");
+            Console.WriteLine("(1) Register a new Income");
+            Console.WriteLine("(2) Register a new Expense");
+            Console.WriteLine("(3) Examine all transactions");
+            Console.WriteLine("(4) Exit");
             try
             {
                 int decision = int.Parse(Console.ReadLine());
@@ -71,7 +79,7 @@ namespace MonkeyBusiness.Views
         }
         public Transaction NewTransaction(AccountHandler handler, Account account)
         {
-
+            Console.Clear();
             int id = handler.GetTransactionID(account);
             Console.WriteLine("Como desea nombrar el income?");
             string nameInco = Console.ReadLine();
@@ -82,26 +90,26 @@ namespace MonkeyBusiness.Views
             int select = int.Parse(Console.ReadLine());
             Console.WriteLine("Monto de la transaccion?");
             decimal monto = decimal.Parse(Console.ReadLine());
-            Transaction transaction = new (id, account.Id, nameInco, monto, GetCategory(select,handler), desInco);
+            Transaction transaction = new (id, account.Id, nameInco, monto, GetCategory(select, handler), desInco);
             return transaction;
         }
         
-         
-         
-        public Transaction GerenateExpense(Account account, decimal amount, AccountHandler handler)
+        public Transaction GerenateExpense(Account account, AccountHandler handler)
         {
 
             Transaction transaction = NewTransaction(handler,account);
-            account.Balance -= amount;
+            account.Balance -= transaction.Amount;
             transaction.TType = TransactionType.Expense;
+            account.Transactions.Add(transaction);
             return transaction;
         }
 
-        public Transaction GerenateIncome(Account account, decimal amount, AccountHandler handler)
+        public Transaction GerenateIncome(Account account, AccountHandler handler)
         {
             Transaction transaction = NewTransaction(handler, account);
-            account.Balance += amount;
+            account.Balance += transaction.Amount;
             transaction.TType = TransactionType.Income;
+            account.Transactions.Add(transaction);
             return transaction;
         }
         public Category GetCategory(int choice, AccountHandler handler)
@@ -116,6 +124,21 @@ namespace MonkeyBusiness.Views
             }
             return tempCategory;
         }
+
+        /*
+          public Category GetCategory(int choice, AccountHandler handler)
+        {
+            Category tempCategory = new Category(0,"");
+            foreach (var category in handler.categories)
+            {
+                if (choice == category.Id)
+                {
+                    tempCategory = category;
+                }
+            }
+            return tempCategory;
+        }
+         * */
         public decimal IntoDollars(decimal dop) { return (dop * 57); }
     }
 }
