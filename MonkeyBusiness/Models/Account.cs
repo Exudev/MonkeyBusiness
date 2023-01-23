@@ -23,12 +23,9 @@ namespace MonkeyBusiness.Models
             this.Balance = 0;
             this.Transactions = new List<Transaction>();
         }
-
         public void updateNextID(int newId)
         {
             this.NextId = newId + 1;
         }
     }
-
-    
 }
