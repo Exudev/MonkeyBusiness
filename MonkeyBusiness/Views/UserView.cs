@@ -16,11 +16,12 @@ namespace MonkeyBusiness.Views
             {
                 Console.Clear();
                 Console.WriteLine("Welcome back, {0}!", user.Name);
-                Console.WriteLine("Current balance: ${0}DOP (${1}USD)\n", TotalBalance(user), IntoDollars(TotalBalance(user)));
+                Console.WriteLine("Current balance: ${0}DOP (${1}USD)\n", TotalBalance(user), handler.Converter.ConvertCurrency(TotalBalance(user), true));
                 Console.WriteLine("Accounts: ");
                 for (int i = 0; i < user.Account.Count; i++)
                 {
-                    Console.WriteLine("{0}: ${1}DOP (${2}USD)", user.Account[i].Id, user.Account[i].Balance, IntoDollars(user.Account[i].Balance));
+                    Console.WriteLine("{0}: ${1}DOP (${2}USD)", user.Account[i].Id, user.Account[i].Balance,
+                        handler.Converter.ConvertCurrency(user.Account[i].Balance, true));
                 }
                 Console.WriteLine("\nWhat do you want to do?");
                 int decision = ChoiceMenu();
@@ -177,12 +178,10 @@ namespace MonkeyBusiness.Views
             decimal total = 0;
             for (int i = 0; i < user.Account.Count; i++)
             {
-                user.Account[i].Balance += total;
+                total += user.Account[i].Balance;
             }
             return total;
         }
-
-        
         public decimal IntoDollars(decimal dop) { return (dop * 57); }
     }
 }

@@ -10,21 +10,21 @@
         "Id": 2,
         "NextId": 7,
         "UserId": 1,
-        "Balance": 0.0,
+        "Balance": 2850.50,
         "Transactions": []
       },
       {
         "Id": 4,
         "NextId": 7,
         "UserId": 1,
-        "Balance": 0.0,
+        "Balance": 579.7,
         "Transactions": []
       },
       {
         "Id": 6,
         "NextId": 7,
         "UserId": 1,
-        "Balance": 0.0,
+        "Balance": 1420.65,
         "Transactions": []
       }
     ]
