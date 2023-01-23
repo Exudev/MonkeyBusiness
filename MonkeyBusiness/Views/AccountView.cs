@@ -3,6 +3,7 @@ using MonkeyBusiness.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -41,7 +42,7 @@ namespace MonkeyBusiness.Views
                         GerenateExpense(account, handler);
                         break;
                     case 3:
-                        
+                        PrintAllTransactions(account, handler);
                         break;
                     case 4:
                         handler.GoToUser(user);
@@ -126,8 +127,17 @@ namespace MonkeyBusiness.Views
             }
             return tempCategory;
         }
-
-        
-        
+        public void PrintAllTransactions(Account account, AccountHandler handler)
+        {
+            Console.Clear();
+            for (int i = account.Transactions.Count - 1; i > 0 - 1; i--)
+            {
+                Console.WriteLine("{0}: {1} {2}${3}DOP (${4}USD), {5}", account.Transactions[i].Id, account.Transactions[i].Description,
+                account.Transactions[i].GetEnumType(), account.Transactions[i].Amount,
+                    handler.Converter.ConvertCurrency(account.Transactions[i].Amount, true), account.Transactions[i].Date);
+            }
+            Console.WriteLine("\nPress any key to continue...");
+            Console.ReadKey();
+        }
     }
 }

@@ -10,7 +10,7 @@
         "Id": 2,
         "NextId": 7,
         "UserId": 1,
-        "Balance": 2312.50,
+        "Balance": 1512.50,
         "Transactions": [
           {
             "Id": 1,
@@ -88,6 +88,19 @@
               "Name": "Gorritos"
             },
             "Description": "qgqagew",
+            "TType": 0
+          },
+          {
+            "Id": 7,
+            "AccountId": 2,
+            "Name": "gsdgh",
+            "Amount": 800.0,
+            "Date": "2023-01-22T21:51:48.3909338-04:00",
+            "Category": {
+              "Id": 2,
+              "Name": "Gorritos"
+            },
+            "Description": "afadfadfg",
             "TType": 0
           }
         ]
