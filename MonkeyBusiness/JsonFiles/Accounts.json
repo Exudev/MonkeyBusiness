@@ -28,5 +28,35 @@
         "Transactions": []
       }
     ]
+  },
+  {
+    "Id": 2,
+    "Username": "Pabloedud",
+    "Name": "Pablo",
+    "Lastname": "Diaz",
+    "Password": "beastmaster64",
+    "Account": [
+      {
+        "Id": 1,
+        "NextId": 2,
+        "UserId": 2,
+        "Balance": 15000.00,
+        "Transactions": [
+          {
+            "Id": 1,
+            "AccountId": 1,
+            "Name": "Recarga de mami",
+            "Amount": 14000.00,
+            "Date": "2023-01-22T21:13:31.4450009-04:00",
+            "Category": {
+              "Id": 1,
+              "Name": "Videogames"
+            },
+            "Description": "Para el alquiler",
+            "TType": 1
+          }
+        ]
+      }
+    ]
   }
 ]
