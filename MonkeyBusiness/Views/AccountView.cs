@@ -35,16 +35,16 @@ namespace MonkeyBusiness.Views
                 switch (decision)
                 {
                     case 1:
-                               GerenateIncome(account,handler);
+                        GerenateIncome(account,handler);
                         break;
                     case 2:
-
+                        GerenateExpense(account, handler);
                         break;
                     case 3:
-                        handler.GoToUser(user);
+                        
                         break;
                     case 4:
-
+                        handler.GoToUser(user);
                         break;
                     default:
                         break;
@@ -81,9 +81,9 @@ namespace MonkeyBusiness.Views
         {
             Console.Clear();
             int id = handler.GetTransactionID(account);
-            Console.WriteLine("Como desea nombrar el income?");
+            Console.WriteLine("Como desea nombrar la transaccion?");
             string nameInco = Console.ReadLine();
-            Console.WriteLine("Alguna descripcion para el income?");
+            Console.WriteLine("Alguna descripcion para la transaccion?");
             string desInco = Console.ReadLine();
             Console.WriteLine("Selecciona la categoria");
             handler.ShowCategories();
@@ -101,6 +101,7 @@ namespace MonkeyBusiness.Views
             account.Balance -= transaction.Amount;
             transaction.TType = TransactionType.Expense;
             account.Transactions.Add(transaction);
+            handler.SaveUsersToJson();
             return transaction;
         }
 
@@ -110,6 +111,7 @@ namespace MonkeyBusiness.Views
             account.Balance += transaction.Amount;
             transaction.TType = TransactionType.Income;
             account.Transactions.Add(transaction);
+            handler.SaveUsersToJson();
             return transaction;
         }
         public Category GetCategory(int choice, AccountHandler handler)
@@ -125,20 +127,7 @@ namespace MonkeyBusiness.Views
             return tempCategory;
         }
 
-        /*
-          public Category GetCategory(int choice, AccountHandler handler)
-        {
-            Category tempCategory = new Category(0,"");
-            foreach (var category in handler.categories)
-            {
-                if (choice == category.Id)
-                {
-                    tempCategory = category;
-                }
-            }
-            return tempCategory;
-        }
-         * */
-        public decimal IntoDollars(decimal dop) { return (dop * 57); }
+        
+        
     }
 }
