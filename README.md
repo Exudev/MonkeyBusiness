@@ -1,14 +1,10 @@
 # MonkeyBusiness
 Is an application designed to help you keep track of your expenses. This repository contains the source code of the latest version, completely rewritten from scratch.
 
-## IDS326 2022-04 [Grupo 4]
+## TEAM
 **EnreiKazuri** (Mariano Vásquez, 1087284)
 
-**Pabloedud** (Pablo Edu Diaz, 1096394)
-
-**Manuelusion** (Manuel Mañon, 1095179)
-
-**Carlos1kaiser1Romero** (Carlos Romero, 1090006)
+**Exudev** (Pablo Edu Diaz)
 
 ![Loading Gif](./MonkeyBusiness/Images/LoadingUSD.gif)
 ---
